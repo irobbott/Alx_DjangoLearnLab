@@ -4,9 +4,8 @@
 ```python
 from bookshelf.models import Book
 
-# Retrieving all books
-books = Book.objects.all()
+# Retrieve the book by title
+book = Book.objects.get(title="1984")
 
-# Display the first book
-books.first()
-
+# Display the book details
+book
