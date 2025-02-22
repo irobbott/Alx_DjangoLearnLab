@@ -30,11 +30,13 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 def register(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')  # Redirect to login page after successful registration
+            user = form.save()
+            login(request, user)  # Log in the user after registration
+            return redirect('login')  # Redirect to login page after registration
     else:
         form = UserCreationForm()
-    return render(request, 'register.html', {'form': form})
+    
+    return render(request, 'relationship_app/register.html', {'form': form})
