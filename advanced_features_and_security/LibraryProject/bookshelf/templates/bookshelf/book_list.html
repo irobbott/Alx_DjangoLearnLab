@@ -1,0 +1,13 @@
+<!-- LibraryProject/bookshelf/templates/bookshelf/book_list.html -->
+{% extends "base.html" %}  <!-- Extend from base template if available -->
+
+{% block content %}
+<h1>Book List</h1>
+<ul>
+    {% for book in books %}
+        <li>{{ book.title }} by {{ book.author }}</li>
+    {% empty %}
+        <li>No books available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
