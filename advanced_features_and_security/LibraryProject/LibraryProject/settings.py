@@ -162,3 +162,5 @@ SECURE_BROWSER_XSS_FILTER = True
 
 # Prevent your site from being embedded in an iframe (protects against clickjacking)
 X_FRAME_OPTIONS = "DENY"
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
