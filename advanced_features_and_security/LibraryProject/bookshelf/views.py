@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404
 from .models import Book
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.views.generic import ListView
 
 # Create your views here.
 def view_books(request):
@@ -21,3 +23,9 @@ def delete_book(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     book.delete()
     return render(request, 'bookshelf/delete_book.html')
+
+class BookListView(PermissionRequiredMixin, ListView):
+    model = Book
+    template_name = "bookshelf/book_list.html"
+    context_object_name = "books"
+    permission_required = "bookshelf.can_view"

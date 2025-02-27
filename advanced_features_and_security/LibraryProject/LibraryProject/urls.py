@@ -25,4 +25,5 @@ urlpatterns = [
     path('create_book/', create_book, name='create_book'),
     path('edit_book/<int:book_id>/', edit_book, name='edit_book'),
     path('delete_book/<int:book_id>/', delete_book, name='delete_book'),
+    path('book_list/', BookListView.as_view(), name='book_list'),
 ]
