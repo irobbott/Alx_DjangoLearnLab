@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import ListView
 from django.db.models import Q
 from django.contrib.auth.decorators import permission_required
+from .forms import ExampleForm
 
 # Create your views here.
 def view_books(request):
