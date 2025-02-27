@@ -139,3 +139,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'list_books'
 LOGOUT_REDIRECT_URL = 'login'
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
+
+# Redirect all non-HTTPS requests to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# Enable HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Secure session cookies
+SESSION_COOKIE_SECURE = True
+
+# Secure CSRF cookies
+CSRF_COOKIE_SECURE = True
+
+# Prevent MIME type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Enable the browser’s built-in XSS filtering
+SECURE_BROWSER_XSS_FILTER = True
+
+# Prevent your site from being embedded in an iframe (protects against clickjacking)
+X_FRAME_OPTIONS = "DENY"
