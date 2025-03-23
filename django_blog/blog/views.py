@@ -13,6 +13,9 @@ from .forms import CommentForm
 from django.db.models import Q
 from django.shortcuts import render
 from .models import Post
+from django.shortcuts import render
+from django.db.models import Q
+from .models import Post
 
 # Register View
 def register(request):
@@ -89,3 +92,16 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('post_detail', kwargs={'pk': self.object.post.id})
+    
+def search_posts(request):
+    query = request.GET.get('q')
+    posts = Post.objects.all()  # Default to all posts if no search query
+
+    if query:
+        posts = Post.objects.filter(
+            Q(title__icontains=query) | 
+            Q(content__icontains=query) | 
+            Q(tags__name__icontains=query)
+        ).distinct()
+
+    return render(request, 'blog/search_results.html', {'posts': posts, 'query': query})
