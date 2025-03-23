@@ -6,6 +6,7 @@ from .views import CommentCreateView, CommentUpdateView, CommentDeleteView
 from .views import search_posts
 from taggit.views import TaggedItemListView
 from .models import Post
+from .views import PostByTagListView
 
 urlpatterns = [
     path('register/', views.register, name='register'),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('search/', search_posts, name='search_posts'),
     path('tags/<slug:tag_slug>/', TaggedItemListView.as_view(model=Post), name='posts_by_tag'),
     path('search/', search_posts, name='search_posts'),
+    path('tags/<str:tag>/', PostByTagListView.as_view(), name='posts_by_tag'),
 ]

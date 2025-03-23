@@ -16,6 +16,7 @@ from .models import Post
 from django.shortcuts import render
 from django.db.models import Q
 from .models import Post
+from django.views.generic import ListView
 
 # Register View
 def register(request):
@@ -105,3 +106,12 @@ def search_posts(request):
         ).distinct()
 
     return render(request, 'blog/search_results.html', {'posts': posts, 'query': query})
+
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'blog/post_list_by_tag.html'  # Create this template
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        tag = self.kwargs.get('tag')
+        return Post.objects.filter(tags__name__icontains=tag)
