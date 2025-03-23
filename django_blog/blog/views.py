@@ -10,6 +10,9 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Post, Comment
 from .forms import CommentForm
+from django.db.models import Q
+from django.shortcuts import render
+from .models import Post
 
 # Register View
 def register(request):
